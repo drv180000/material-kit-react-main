@@ -6,14 +6,11 @@
   "homepage": "https://drv180000.github.io/material-kit-react-main/",
   "private": false,
   "scripts": {
-    "dev": "next",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "build": "next build",
-    "start": "next start",
-    "export": "next export",
-    "lint": "next lint",
-    "lint-fix": "next lint --fix"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "deploy": "gh-pages -b master -d build",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@emotion/cache": "11.10.5",
