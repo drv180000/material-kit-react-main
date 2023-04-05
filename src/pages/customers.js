@@ -4,7 +4,7 @@ import { subDays, subHours } from 'date-fns';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
-import { Box, Button, Container, Stack, SvgIcon, TextField, Typography } from '@mui/material';
+import { Box, Button, Container, Stack, SvgIcon, TextField, Typography, Input } from '@mui/material';
 import { useSelection } from 'src/hooks/use-selection';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CustomersTable } from 'src/sections/customer/customers-table';
@@ -25,7 +25,7 @@ const data = [
     avatar: '/assets/avatars/avatar-carson-darrin.png',
     createdAt: subDays(subHours(now, 7), 1).getTime(),
     email: 'carson.darrin@devias.io',
-    name: 'arson Darrin',
+    name: 'Carson Darrin',
     phone: '304-428-3097'
   },
   {
@@ -180,6 +180,12 @@ const Page = () => {
   const customers = useCustomers(page, rowsPerPage);
   const customersIds = useCustomerIds(customers);
   const customersSelection = useSelection(customersIds);
+  const [value, setValue] = useState('');
+  const handleTextChange = e => {
+    console.log(`Typed => ${e.target.value}`);
+    setValue(e.target.value);
+  };
+
 
   const handlePageChange = useCallback(
     (event, value) => {
@@ -220,7 +226,6 @@ const Page = () => {
                 <Typography variant="h4">
                   Classes
                 </Typography>
-                <TextField id="outlined-basic" label='add text' variant='outlined' />
 
                 <Stack
                   alignItems="center"
@@ -263,6 +268,8 @@ const Page = () => {
               </div>
             </Stack>
             <CustomersSearch />
+            <TextField value={value} label='add text' variant='outlined' onChange={handleTextChange}/>
+
             <CustomersTable
               count={data.length}
               items={customers}
